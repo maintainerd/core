@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/maintainerd/auth/internal/util"
+	"github.com/maintainerd/core/internal/util"
 )
 
 func JWTAuthMiddleware() gin.HandlerFunc {
