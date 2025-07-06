@@ -7,9 +7,12 @@ import (
 
 type HandlerCollection struct {
 	OrganizationHandler *handler.OrganizationHandler
+	ServiceHandler      *handler.ServiceHandler
 }
 
-func Registerroute(r *gin.Engine, h *HandlerCollection) {
+func RegisterRoute(r *gin.Engine, h *HandlerCollection) {
 	api := r.Group("/api/v1")
+
 	RegisterOrganizationRoute(api, h.OrganizationHandler)
+	RegisterServiceRoute(api, h.ServiceHandler)
 }

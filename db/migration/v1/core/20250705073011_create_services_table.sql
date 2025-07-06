@@ -7,8 +7,8 @@ CREATE TABLE IF NOT EXISTS services (
     service_uuid    UUID NOT NULL UNIQUE,
     service_name    VARCHAR(100) NOT NULL, -- 'default', 'auth', 'your-custom-service'
     display_name    TEXT NOT NULL,
-    service_type    TEXT NOT NULL, -- 'default', 'custom'
     description     TEXT NOT NULL,
+    service_type    TEXT NOT NULL, -- 'default', 'custom'
     version         VARCHAR(20) NOT NULL,
     config          JSONB,
     is_active       BOOLEAN DEFAULT FALSE,

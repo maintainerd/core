@@ -22,15 +22,15 @@ func main() {
 	appMode := os.Getenv("APP_MODE")
 
 	if appMode == "mono" {
-		coreConfigRepository := repository.NewCoreConfigRepository(db)
-		coreConfigService := service.NewCoreConfigService(coreConfigRepository)
+		serviceRepository := repository.NewServiceRepository(db)
+		serviceService := service.NewServiceService(serviceRepository)
 
-		_, err := coreConfigService.GetLatestConfig()
+		_, err := serviceService.GetByName("core")
 		if err != nil {
 			// Run default seeders
 			if appVersion == "v0.0.1" {
-				runner.RunDefaultMigrations(connString)
-				runner.RunDefaultSeeders(db, appVersion)
+				runner.RunMonolithMigrations(connString)
+				runner.RunMonolithSeeders(db, appVersion)
 			}
 		}
 	}
@@ -38,8 +38,9 @@ func main() {
 	application := app.NewApp(db)
 	r := gin.Default()
 
-	route.Registerroute(r, &route.HandlerCollection{
+	route.RegisterRoute(r, &route.HandlerCollection{
 		OrganizationHandler: application.OrganizationHandler,
+		ServiceHandler:      application.ServiceHandler,
 	})
 
 	if err := r.Run(":8080"); err != nil {

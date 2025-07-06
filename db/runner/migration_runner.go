@@ -5,7 +5,7 @@ import (
 	"os/exec"
 )
 
-func RunDefaultMigrations(connectionString string) {
+func RunMonolithMigrations(connectionString string) {
 	log.Println("🏃 Running migrations...")
 
 	// Migration files

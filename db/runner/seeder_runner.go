@@ -7,8 +7,8 @@ import (
 	"gorm.io/gorm"
 )
 
-func RunDefaultSeeders(db *gorm.DB, appVersion string) {
+func RunMonolithSeeders(db *gorm.DB, appVersion string) {
 	log.Println("🏃 Running seeders...")
-	seeder.SeedCoreConfigs(db, appVersion)
+	seeder.SeedService(db, appVersion)
 	log.Println("✅ Seeding process completed.")
 }
